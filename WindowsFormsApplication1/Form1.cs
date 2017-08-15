@@ -43,9 +43,8 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
         {
-            InputWeight.Text = "kgs";
-            InputHeight.Text = "m";
-            
+            HeightUnits.Text = "m";
+            WeightUnits.Text = "kgs";
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -70,8 +69,70 @@ namespace WindowsFormsApplication1
 
         private void ImperialButton_CheckedChanged(object sender, EventArgs e)
         {
-            InputHeight.Text = "inches";
-            InputWeight.Text = "pounds";
+            HeightUnits.Text = "inches";
+            WeightUnits.Text = "pounds";
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// calculates bmi
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Calculate_Click(object sender, EventArgs e)
+        {
+            if (Imperial.Checked == true)
+            {
+                double height = double.Parse(HeightText.Text);
+                double Weight = double.Parse(WeightText.Text);
+                double BMI;
+                BMI = (Weight * 703) / (height * height);
+                BMIResults.Text = BMI.ToString();
+                if (BMI <= 18.5)
+                {
+                    result.Text = "Underweight";
+                }
+                else if (BMI > 18.5 && BMI <= 24.9)
+                {
+                    result.Text = "Normal";
+                }
+                else if (BMI > 25 && BMI <= 29.9)
+                {
+                    result.Text = "Overweight";
+                }
+                else if (BMI >= 30)
+                {
+                    result.Text = "Obese";
+                }
+            }
+            if (Metric.Checked == true)
+            {
+                double height = double.Parse(HeightText.Text);
+                double Weight = double.Parse(WeightText.Text);
+                double BMI;
+                BMI = (Weight) / (height * height);
+                BMIResults.Text = BMI.ToString();
+                if (BMI <= 18.5)
+                {
+                    result.Text = "Underweight";
+                }
+                else if (BMI > 18.5 && BMI <= 24.9)
+                {
+                    result.Text = "Normal";
+                }
+                else if (BMI > 25 && BMI <= 29.9)
+                {
+                    result.Text = "Overweight";
+                }
+                else if (BMI >= 30)
+                {
+                    result.Text = "Obese";
+                }
+            }
+        }
+
     }
-}
+
