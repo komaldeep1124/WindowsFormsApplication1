@@ -51,5 +51,21 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void weight_Click(object sender, EventArgs e)
+        {
+            
+        }
+        /// <summary>
+        /// this changes imperical units
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void ImperialButton_CheckedChanged(object sender, EventArgs e)
+        {
+            InputHeight.Text = "inches";
+            InputWeight.Text = "pounds";
+        }
     }
 }

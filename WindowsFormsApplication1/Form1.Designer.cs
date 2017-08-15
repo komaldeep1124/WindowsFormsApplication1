@@ -33,7 +33,7 @@
             this.ImperialButton = new System.Windows.Forms.RadioButton();
             this.Height = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.InputWeight = new System.Windows.Forms.TextBox();
             this.MyWeight = new System.Windows.Forms.Label();
             this.InputHeight = new System.Windows.Forms.Label();
             this.weight = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.tableLayoutPanel1.Controls.Add(this.MetricButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.Height, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBox2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.InputWeight, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.MyWeight, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.InputHeight, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.weight, 2, 2);
@@ -90,14 +90,16 @@
             // ImperialButton
             // 
             this.ImperialButton.AutoSize = true;
-            this.ImperialButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLayoutPanel1.SetColumnSpan(this.ImperialButton, 2);
+            this.ImperialButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImperialButton.Location = new System.Drawing.Point(95, 3);
             this.ImperialButton.Name = "ImperialButton";
-            this.ImperialButton.Size = new System.Drawing.Size(80, 22);
+            this.ImperialButton.Size = new System.Drawing.Size(101, 29);
             this.ImperialButton.TabIndex = 1;
             this.ImperialButton.TabStop = true;
             this.ImperialButton.Text = "Imperial";
             this.ImperialButton.UseVisualStyleBackColor = true;
+            this.ImperialButton.CheckedChanged += new System.EventHandler(this.ImperialButton_CheckedChanged);
             // 
             // Height
             // 
@@ -116,12 +118,12 @@
             this.textBox1.Size = new System.Drawing.Size(86, 45);
             this.textBox1.TabIndex = 3;
             // 
-            // textBox2
+            // InputWeight
             // 
-            this.textBox2.Location = new System.Drawing.Point(95, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(86, 45);
-            this.textBox2.TabIndex = 4;
+            this.InputWeight.Location = new System.Drawing.Point(95, 135);
+            this.InputWeight.Name = "InputWeight";
+            this.InputWeight.Size = new System.Drawing.Size(86, 45);
+            this.InputWeight.TabIndex = 4;
             // 
             // MyWeight
             // 
@@ -139,23 +141,25 @@
             this.InputHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InputHeight.Location = new System.Drawing.Point(187, 66);
             this.InputHeight.Name = "InputHeight";
-            this.InputHeight.Size = new System.Drawing.Size(76, 50);
+            this.InputHeight.Size = new System.Drawing.Size(70, 25);
             this.InputHeight.TabIndex = 6;
-            this.InputHeight.Text = "Inches/Metres";
+            this.InputHeight.Text = "Inches";
             this.InputHeight.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // weight
             // 
             this.weight.AutoSize = true;
-            this.weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.weight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.weight.Location = new System.Drawing.Point(187, 132);
             this.weight.Name = "weight";
-            this.weight.Size = new System.Drawing.Size(83, 34);
+            this.weight.Size = new System.Drawing.Size(79, 25);
             this.weight.TabIndex = 7;
-            this.weight.Text = "Pounds/Kilograms";
+            this.weight.Text = "Pounds";
+            this.weight.Click += new System.EventHandler(this.weight_Click);
             // 
             // CalculateBMI
             // 
+            this.CalculateBMI.BackColor = System.Drawing.SystemColors.Highlight;
             this.tableLayoutPanel1.SetColumnSpan(this.CalculateBMI, 3);
             this.CalculateBMI.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalculateBMI.Location = new System.Drawing.Point(3, 201);
@@ -163,13 +167,14 @@
             this.CalculateBMI.Size = new System.Drawing.Size(272, 49);
             this.CalculateBMI.TabIndex = 8;
             this.CalculateBMI.Text = "CalculateBMI";
-            this.CalculateBMI.UseVisualStyleBackColor = true;
+            this.CalculateBMI.UseVisualStyleBackColor = false;
             // 
             // textBox3
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.textBox3, 3);
             this.textBox3.Location = new System.Drawing.Point(3, 267);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(272, 45);
             this.textBox3.TabIndex = 9;
             // 
@@ -178,6 +183,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.textBox4, 3);
             this.textBox4.Location = new System.Drawing.Point(3, 333);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(272, 45);
             this.textBox4.TabIndex = 10;
             // 
@@ -185,6 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 38F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(302, 433);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -208,7 +215,7 @@
         private System.Windows.Forms.RadioButton ImperialButton;
         private System.Windows.Forms.Label Height;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox InputWeight;
         private System.Windows.Forms.Label MyWeight;
         private System.Windows.Forms.Label InputHeight;
         private System.Windows.Forms.Label weight;
