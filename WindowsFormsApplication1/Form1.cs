@@ -36,10 +36,16 @@ namespace WindowsFormsApplication1
         {
 
         }
-
+        /// <summary>
+        /// this changes the metric units
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
         {
-
+            InputWeight.Text = "kgs";
+            InputHeight.Text = "m";
+            
         }
 
         private void label1_Click_1(object sender, EventArgs e)
